@@ -10,15 +10,17 @@
 
 本版在插件的 `CHANNEL_PHRASE_REWRITES` 里补齐对应改写，其余代码与 0.7.9 完全一致。
 
-## 安装（DSH 插件管理器直接输入 GitHub 地址）
+## 安装（DSH 插件管理器输入 GitHub 地址）
 
-> 本仓库为私人仓库，安装地址需要带上访问令牌（令牌只授予读取本仓库的权限）：
+> 本仓库为**私人仓库**，安装地址必须带上访问令牌：
 
 ```
 https://<TOKEN>@github.com/LJY-YL/dsh-workbuddy-connect
 ```
 
-在 DSH 的 **设置 → 插件 → 添加插件**（或插件面板的「从 GitHub 安装」）输入框里粘贴上面的地址即可。
+把上面的地址粘贴到 DSH 的 **设置 → 插件 → 添加插件** 输入框即可。
+
+**前提条件**：DSH 通过 git 拉取 GitHub 仓库，目标机器必须已安装 [Git for Windows](https://git-scm.com/download/win)（macOS/Linux 自带）。未装 git 时安装会报 `git ls-remote failed`。安装过程中如提示构建脚本确认（`@google/genai`、`protobufjs`），在插件管理器里允许即可（与你装官方版时相同）。
 
 命令行方式（web / dsh-tui profile）：
 
@@ -38,10 +40,9 @@ dsh plugin --profile web add "https://<TOKEN>@github.com/LJY-YL/dsh-workbuddy-co
 
 ## 维护说明
 
-原插件升级后，本补丁需要重打（等价脚本见上游使用习惯：修改
-`lib/host-heartbeat-SJaZ33tR.js` 中的 `CHANNEL_PHRASE_REWRITES` 后替换文件）。
-本仓库 `files` 已包含 `lib/`，DSH 从 GitHub 源码安装时会自动
-`npm install --omit=dev` 安装运行依赖 `@earendil-works/pi-ai@1.3.0`（公网 npm 可拉取）。
+原插件升级后，本补丁需要重打（修改 `lib/host-heartbeat-SJaZ33tR.js` 中的
+`CHANNEL_PHRASE_REWRITES` 后替换文件）。DSH 从 GitHub 源码安装时会自动
+`pnpm install --omit=dev` 安装运行依赖 `@earendil-works/pi-ai@1.3.0`（公网 npm 可拉取）。
 
 ## 许可
 
