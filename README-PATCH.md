@@ -32,11 +32,18 @@ dsh plugin --profile web add "https://<TOKEN>@github.com/LJY-YL/dsh-workbuddy-co
 
 ## 与上游的差异
 
-仅 1 个文件、1 处逻辑改动：
+1 个声明 + 1 个文件：
 
+- `package.json`：新增 `engines.dsh: ">=0.2.0-rc.1 <0.3.0"`。官方 0.7.9 的 peer 依赖把宿主包钉死在 `0.2.1-rc.2`，在最新的 DSH（0.2.1-rc.3 内核）上会被兼容性检查判为「异常」无法启用；存在 `engines.dsh` 字段时 DSH 只看它，因此本版在 rc.3 上**开箱即用**，无需手动加版本豁免。
 - `lib/host-heartbeat-SJaZ33tR.js`：`CHANNEL_PHRASE_REWRITES` 补充两条规则
   （`the user mentioned`、`relative paths resolve against the workspace root` 的改写），
   并附带 `sanitizeChannelText` / `sanitizeChannelPhrases` 应用在聊天正文上。
+
+## 适用范围与边界
+
+- 适用于 DSH `0.2.x`（`>=0.2.0-rc.1 <0.3.0`）；DSH 升级到 0.3 后需重新评估并改 `engines.dsh`。
+- 这是和网关指纹识别的对抗：DSH 若再改系统提示词，可能出现新的指纹句，届时同样需要补规则。
+- 官方包已停止维护；本版本固定在 0.7.9 的行为，不跟随上游修复。
 
 ## 维护说明
 
