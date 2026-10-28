@@ -2,6 +2,13 @@
 
 English | [中文](./README.md)
 
+> **This repository is a community-patched fork** (`0.7.9-p1`): based on the official [corrinehu/dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) v0.7.9 (no longer maintained), with two changes:
+>
+> 1. **Compatible with the latest DSH**: the official build is flagged "abnormal" and cannot be enabled on the DSH 0.2.1-rc.3 core (peer deps pinned to rc.2). This fork relaxes the declaration via `engines.dsh: ">=0.2.0-rc.1 <0.3.0"`, so it works out of the box on both rc.2 and rc.3 — no manual version exemption needed.
+> 2. **Fixes the gateway channel block**: resolves `workbuddy upstream client (http 400)` / "request intercepted" errors (code 11128) — the WorkBuddy gateway fingerprints specific phrases in DSH's system prompt (the `the harness` product name; the `the user mentioned` + `relative paths resolve against the workspace root` pair) and rejects the request. This fork completes the rewrite rules in `CHANNEL_PHRASE_REWRITES`.
+>
+> See [README-PATCH.md](./README-PATCH.md) for details.
+
 Brings the models available in your signed-in WorkBuddy / WorkBuddy AI desktop app into [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness); the two versions each show their own model group and reuse their own account sign-in and credit.
 
 ## Install
