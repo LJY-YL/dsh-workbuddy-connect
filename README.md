@@ -2,6 +2,13 @@
 
 [English](./README.en.md) | 中文
 
+> **本仓库是社区修复版**（`0.7.9-p1`）：基于官方 [corrinehu/dsh-workbuddy-connect](https://github.com/corrinehu/dsh-workbuddy-connect) v0.7.9（已停止维护），包含两处改动：
+>
+> 1. **兼容最新版 DSH**：官方版在 DSH 0.2.1-rc.3 内核上会被兼容性检查判为「异常」无法启用（peer 依赖钉死 rc.2）。本版通过 `engines.dsh: ">=0.2.0-rc.1 <0.3.0"` 放宽声明，rc.2 / rc.3 均**开箱即用，无需手动加版本豁免**。
+> 2. **修复渠道拦截**：解决发消息时报 `workbuddy upstream client (http 400)` / 「请求被拦截，请重新发送」（code 11128）——WorkBuddy 网关会按客户端指纹拦截 DSH 系统提示里的特定短语（`the harness` 产品名、`the user mentioned` 与 `relative paths resolve against the workspace root` 组合），本版在 `CHANNEL_PHRASE_REWRITES` 里补齐改写规则。
+>
+> 详见 [README-PATCH.md](./README-PATCH.md)。
+
 将已登录的 WorkBuddy / WorkBuddy AI 桌面应用中可用的模型接入 DeepSeek Harness；两版分别显示各自的模型分组，并沿用各自的账号登录与积分。
 
 ## 安装
